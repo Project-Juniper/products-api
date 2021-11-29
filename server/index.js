@@ -14,11 +14,10 @@ app.use(express.static('./client'));
 app.use(express.json());
 app.use(cors());
 
-app.get('/products/', (req, res) => {
-  const id = 5;
+app.get('/products/:id', (req, res) => {
+  const { id } = req.params;
   db.getItemInfo(id, (err, response) => {
     if (err) {
-      console.log('error was here');
       res.status(400).send('error');
     } else {
       res.status(200).json(response);
@@ -26,11 +25,10 @@ app.get('/products/', (req, res) => {
   });
 });
 
-app.get('/test/', (req, res) => {
-  const id = 5;
+app.get('/products/:id/styles', (req, res) => {
+  const { id } = req.params;
   db.getStyleInfo(id, (err, response) => {
     if (err) {
-      console.log('error was here');
       res.status(400).send('error');
     } else {
       res.status(200).json(response);
@@ -38,11 +36,10 @@ app.get('/test/', (req, res) => {
   });
 });
 
-app.get('/related/', (req, res) => {
-  const id = 5;
+app.get('/products/:id/related', (req, res) => {
+  const { id } = req.params;
   db.getRelatedInfo(id, (err, response) => {
     if (err) {
-      console.log('error was here');
       res.status(400).send('error');
     } else {
       res.status(200).json(response);
