@@ -1,7 +1,7 @@
 const { Pool } = require('pg');
-const Promise = require('bluebird');
 
 const pool = new Pool({
+  host: 'localhost',
   database: 'productsapi'
 });
 

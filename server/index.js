@@ -1,5 +1,4 @@
 const express = require('express');
-const axios = require('axios');
 const cors = require('cors');
 // const { GH_TOKEN } = require('../tokens.js');
 // const { outfitData } = require('./clientOutfit.js');
@@ -10,7 +9,7 @@ const PORT = 8080 || process.env.PORT;
 // const URL = 'https://app-hrsei-api.herokuapp.com/api/fec2/hr-sfo';
 // const HEADERS = { headers: { Authorization: GH_TOKEN } };
 
-app.use(express.static('./client'));
+// app.use(express.static('./client'));
 app.use(express.json());
 app.use(cors());
 
