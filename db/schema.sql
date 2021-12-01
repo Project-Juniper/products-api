@@ -37,6 +37,7 @@ CREATE TABLE Products (
   default_price INTEGER NULL DEFAULT NULL
 );
 
+CREATE INDEX id_idx ON Products (id);
 
 -- ---
 -- Table 'styles'
@@ -54,6 +55,8 @@ CREATE TABLE Styles (
   default_style BOOLEAN
 );
 
+CREATE INDEX id2_idx ON Styles (id);
+CREATE INDEX product_id_idx ON Styles (product_id);
 
 -- DROP TABLE IF EXISTS `styles`;
 
@@ -134,6 +137,7 @@ CREATE TABLE Related (
   related_product_id INTEGER REFERENCES Products(id)
 );
 
+CREATE INDEX current_product_id_idx ON Related (current_product_id);
 -- ---
 -- Table 'reviews'
 --

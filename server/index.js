@@ -14,6 +14,7 @@ app.use(express.json());
 app.use(cors());
 
 app.get('/products/:id', (req, res) => {
+  console.log('hi');
   const { id } = req.params;
   db.getItemInfo(id, (err, response) => {
     if (err) {

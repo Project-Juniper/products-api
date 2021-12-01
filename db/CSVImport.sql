@@ -4,7 +4,7 @@
 
 \COPY Features FROM '../CSVs/features.csv' WITH DELIMITER ',' CSV HEADER;
 
-\COPY Photos FROM '../CSVs/photos.csv' WITH DELIMITER ',' CSV HEADER;
+\COPY Photos FROM '../CSVs/photosfixed.csv' WITH DELIMITER ',' CSV HEADER;
 
 \COPY Related FROM '../CSVs/related.csv' WITH DELIMITER ',' CSV HEADER;
 
