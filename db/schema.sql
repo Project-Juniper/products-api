@@ -2,30 +2,9 @@
 -- Globals
 -- ---
 
--- SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
--- SET FOREIGN_KEY_CHECKS=0;
-
--- ---
--- Table 'products'
----- ---
-
--- DROP TABLE IF EXISTS `products`;
-
--- CREATE TABLE `products` (
---   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
---   `name` VARCHAR NULL DEFAULT NULL,
---   `slogan` VARCHAR NULL DEFAULT NULL,
---   `description` VARCHAR NULL DEFAULT NULL,
---   `category_id` INTEGER NULL DEFAULT NULL,
---   `default_price` INTEGER NULL DEFAULT NULL,
---   `features_id` INTEGER NULL DEFAULT NULL,
---   `created_at` TIMESTAMP NULL DEFAULT NULL,
---   `updated_at` TIMESTAMP NULL DEFAULT NULL,
---   PRIMARY KEY (`id`)
--- );
-
 -- \c products_api
 
+-- VARCHAR might take up too much space.
 DROP TABLE IF EXISTS Products CASCADE;
 
 CREATE TABLE Products (
@@ -37,12 +16,6 @@ CREATE TABLE Products (
   default_price INTEGER NULL DEFAULT NULL
 );
 
-CREATE INDEX id_idx ON Products (id);
-
--- ---
--- Table 'styles'
---
--- ---
 
 DROP TABLE IF EXISTS Styles CASCADE;
 
@@ -55,25 +28,6 @@ CREATE TABLE Styles (
   default_style BOOLEAN
 );
 
-CREATE INDEX id2_idx ON Styles (id);
-CREATE INDEX product_id_idx ON Styles (product_id);
-
--- DROP TABLE IF EXISTS `styles`;
-
--- CREATE TABLE `styles` (
---   `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
---   `product_id` INTEGER NULL DEFAULT NULL,
---   `name` VARCHAR NULL DEFAULT NULL,
---   `original_price` INTEGER NULL DEFAULT NULL,
---   `sale_price` INTEGER NULL DEFAULT NULL,
---   default_style BOOLEAN,
---   PRIMARY KEY (`id`)
--- );
-
--- ---
--- Table 'skus'
---
--- ---
 
 DROP TABLE IF EXISTS Skus CASCADE;
 
@@ -84,22 +38,7 @@ CREATE TABLE Skus (
   quantity INTEGER NULL DEFAULT NULL
 );
 
--- ---
--- Table 'category'
---
--- ---
 
--- DROP TABLE IF EXISTS Categories CASCADE;
-
--- CREATE TABLE Categories (
---   id INTEGER GENERATED ALWAYS AS IDENTITY NOT NULL PRIMARY KEY,
---   category_name VARCHAR(255) NULL DEFAULT NULL
--- );
-
--- ---
--- Table 'features'
---
--- ---
 
 DROP TABLE IF EXISTS Features CASCADE;
 
@@ -110,10 +49,6 @@ CREATE TABLE Features (
   feature_value VARCHAR(255) NULL DEFAULT NULL
 );
 
--- ---
--- Table 'photos'
---
--- ---
 
 DROP TABLE IF EXISTS Photos CASCADE;
 
@@ -124,10 +59,6 @@ CREATE TABLE Photos (
   thumbnail_url TEXT NULL DEFAULT NULL
 );
 
--- ---
--- Table 'related_products'
---
--- ---
 
 DROP TABLE IF EXISTS Related CASCADE;
 
@@ -137,7 +68,14 @@ CREATE TABLE Related (
   related_product_id INTEGER REFERENCES Products(id)
 );
 
+
+CREATE INDEX id_idx ON Products (id);
+CREATE INDEX id2_idx ON Styles (id);
+CREATE INDEX product_id_idx ON Styles (product_id);
+CREATE INDEX photos_id_idx ON PHOTOS (styles_id);
 CREATE INDEX current_product_id_idx ON Related (current_product_id);
+CREATE INDEX skus_id_idx ON Skus (styles_id);
+CREATE INDEX features_product_idx ON Features (product_id);
 -- ---
 -- Table 'reviews'
 --
